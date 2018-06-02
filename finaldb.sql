@@ -54,6 +54,7 @@ if not exists(Select * from Department where abbreviated_name=departmentCode)
 then
 INSERT INTO Department (abbreviated_name,name,description) VALUES
 (departmentCode,departmentName,departmentDescription);
+else
 Select 'Another department with this departmentcode already exists , please choose a different
 departmentcode'as errormessage;
 END if;
