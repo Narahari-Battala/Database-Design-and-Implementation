@@ -24,13 +24,12 @@ Initial user roles
 
 User Role	Description
 
-Admin	Responsible for adding, updating, and deleting courses and departments. Can also view and edit teacher and student information.
-Teacher	Able to see which and how many students have enrolled in their class.
-Student	Able to register or drop courses. Also able to see which courses they have already enrolled in.
+Admin :	  Responsible for adding, updating, and deleting courses and departments. Can also view and edit teacher and student information.
+Teacher : Able to see which and how many students have enrolled in their class.
+Student	: Able to register or drop courses. Also able to see which courses they have already enrolled in.
 
-Initial user story descriptions
+Story ID       Story description
 
-Story ID	 Story description
 US1	       As an admin, I want to add a new department so that new courses can be added in that department.
 US2	       As an admin, I want to add a new course so that students can enroll into the newly added course.
 US3	       As a student I want to enroll in classes so that I can attend them.
@@ -40,42 +39,20 @@ US6	       As an admin, I want to edit a student’s information so they can be 
 US7	       As an admin, I want to update a department so that a department can properly reflect the courses it contains.
 US8	       As an admin, I want to delete a department if it no longer exists.
 US9	       As an admin, I want to update a course so that students can see any changes made to an academic course.
-US10	     As an admin, I want to delete a course so that students can not enroll or attend a non-existent course.
-US11	     As teacher, I want to view my courses so that I can see what students I am teaching.
-US12	     As an admin, I want to edit a teacher’s information to reflect the courses they are teaching.
-US13	     As a student, I want to search for a course so that I can find the course I wish to take.
+US10	       As an admin, I want to delete a course so that students can not enroll or attend a non-existent course.
+US11	       As teacher, I want to view my courses so that I can see what students I am teaching.
+US12	       As an admin, I want to edit a teacher’s information to reflect the courses they are teaching.
+US13	       As a student, I want to search for a course so that I can find the course I wish to take.
 
-HIGH LEVEL CONCEPTUAL DESIGN
-
-	Entities:
-		Admin
-		Teacher
-		Student
-		Department
-		Course
-
-	Relationships:
-		Department contains course
-		Course has teacher
-		Student enrolls in course
-		Student drops course
-		Admin creates department
-		Admin creates course
-		Admin removes department
-		Admin removes course
-		Course has student
-		Admin edits department
-		Admin edits course
-		
-CONCEPTUAL DESIGN
+CONCEPTUAL DESIGN:
 
 Entity: Admin
 Attributes:
   username
   password
   name [composite]
-		first_name
-		last_name
+  first_name
+  last_name
 
 Entity: Department
 Attributes:
@@ -92,23 +69,23 @@ Attributes:
 
 Entity: Prerequisite
 Attributes:
-	course
-	prerequisite
+   course
+   prerequisite
 
 
 Entity: Section
 Attributes:
-	section_num
+  section_num
   section_limit
   year
 
 Entity: Semester
 Attributes:
-	season
+  season
 
 Entity: Building
 Attributes:	
-name
+  name
 
 Entity: Room
 Attributes:	
@@ -121,26 +98,26 @@ Attributes:
 
 Entity: Lecture_Time
 Attributes:
-	start_time
-	end_time
+  start_time
+  end_time
 
 Entity: Lecture_Day
 Attributes:
-	day
+  day
 
 Entity: Teacher
 Attributes:
   teacher_id
   name [composite]
-		first_name
-		last_name
+  first_name
+  last_name
 
 Entity: Student
 Attributes:
-	student_id
-	name [composite]
-		first_name
-		last_name
+  student_id
+  name [composite]
+  first_name
+  last_name
     
 Entity: Transcript
 Attributes:
@@ -226,7 +203,7 @@ Participation:
 	Transcript has total participation
 	Course has partial participation
 
-FINAL LOGICAL DESIGN
+LOGICAL DESIGN:
 
 Table: Admin
 Columns:
@@ -240,7 +217,7 @@ Highest normalization level: 4NF
 Index: 
 	Index 1: non-clustered
 	Columns: last_name, first_name
-	Justification: We typically get the details of the admin using last_name,but in some cases last_names can be same so combination of 
+  Justification: We typically get the details of the admin using last_name,but in some cases last_names can be same so combination of 
   last_name and first_name will be a good index.Also if someone forgets their username, the best way to search their username is by 
   using the last name and first name of the person.
 
@@ -255,7 +232,7 @@ Highest normalization level: 4NF
 Index: 
 Index 1: non-clustered
 	Columns: name
-	Justification: In most cases everyone searches the department by its name as it is the easy and efficient way to get the information, 
+  Justification: In most cases everyone searches the department by its name as it is the easy and efficient way to get the information, 
   also not everyone knows the abbreviated name of the department.
 
 Table: Course
@@ -271,7 +248,8 @@ Highest normalization level: 4NF
 Indexes: 
 	Index 1: non-clustered  
 	Columns: name
-	Justification: People generally search for a course by its name as very few people are aware of the course numbers , so using it as an index will allow for faster searching.
+	Justification: People generally search for a course by its name as very few people are aware of the course numbers , 
+	so using it as an index will allow for faster searching.
 
 Table: DepartmentCourse
 Columns:
